@@ -5,15 +5,15 @@
 | 状态 | 学习中 |
 | 日期 | 2026-11-27 |
 | 基线 | 本仓 `zhp` 分支；对照 commit `b983a3b`（从 `main` 分出） |
-| 证据 | 源码；[`docs/architecture.md`](/docs/architecture.md)／[`docs/subsystems.md`](/docs/subsystems.md)（二手） |
+| 证据 | 源码；[`docs/architecture.md`](../docs/architecture.md)／[`docs/subsystems.md`](../docs/subsystems.md)（二手） |
 
 > 本仓为 **leaked source**；本文只做机制学习。  
 > 证据约定：**实测** = 本机跑过；**源码** = 读仓库确认；**二手** = 仓内 docs；**推断** = 尚未验证。  
-> 文中路径用工作区根链接（`/src/...#L`），只链文件；在 Cursor 用 Markdown Preview 点击跳转。
+> 文中路径用相对链接（`../src/...#L`），只链文件；勿用前缀 `/`（会被当成系统根目录）。
 
 ## 一句话
 
-**Claude Code 是 Bun + React/Ink 的产品单体：入口经 Commander／init 进 REPL，核心是 [`QueryEngine.submitMessage`](/src/QueryEngine.ts#L209) 包住 [`query()`](/src/query.ts#L219) 的 [`while`](/src/query.ts#L307) 循环（stream → tool_use → [`runTools`](/src/services/tools/toolOrchestration.ts#L19) → 续写），工具／权限／transcript／hooks／plugins／skills／MCP／bridge 全挂在这条链上。**（源码）
+**Claude Code 是 Bun + React/Ink 的产品单体：入口经 Commander／init 进 REPL，核心是 [`QueryEngine.submitMessage`](../src/QueryEngine.ts#L209) 包住 [`query()`](../src/query.ts#L219) 的 [`while`](../src/query.ts#L307) 循环（stream → tool_use → [`runTools`](../src/services/tools/toolOrchestration.ts#L19) → 续写），工具／权限／transcript／hooks／plugins／skills／MCP／bridge 全挂在这条链上。**（源码）
 
 ---
 
@@ -59,35 +59,35 @@
 
 | 区域 | 链接 |
 |---|---|
-| CLI 分流 | [`src/entrypoints/cli.tsx`](/src/entrypoints/cli.tsx) |
-| main | [`main()`](/src/main.tsx#L585) — [`src/main.tsx`](/src/main.tsx) |
-| init | [`init`](/src/entrypoints/init.ts#L57) |
-| MCP server | [`startMCPServer`](/src/entrypoints/mcp.ts#L35) |
-| SDK | [`src/entrypoints/sdk/`](/src/entrypoints/sdk/controlSchemas.ts) |
-| QueryEngine | [`class`](/src/QueryEngine.ts#L184)／[`submitMessage`](/src/QueryEngine.ts#L209) |
-| query loop | [`query()`](/src/query.ts#L219)／[`while (true)`](/src/query.ts#L307) |
-| query 子目录 | [`src/query/`](/src/query/config.ts) |
-| 工具编排 | [`runTools`](/src/services/tools/toolOrchestration.ts#L19)／[`StreamingToolExecutor`](/src/services/tools/StreamingToolExecutor.ts#L40) |
-| Tool 契约 | [`buildTool`](/src/Tool.ts#L783) — [`src/Tool.ts`](/src/Tool.ts) |
-| 工具注册表 | [`getAllBaseTools`](/src/tools.ts#L193)／[`assembleToolPool`](/src/tools.ts#L345) — [`src/tools.ts`](/src/tools.ts) |
-| 工具实现 | [`src/tools/`](/src/tools/utils.ts) |
-| 权限门 | [`src/hooks/toolPermission/`](/src/hooks/toolPermission/PermissionContext.ts)／[`src/utils/permissions/`](/src/utils/permissions/PermissionMode.ts) |
-| Transcript | [`getTranscriptPath`](/src/utils/sessionStorage.ts#L202)／[`recordTranscript`](/src/utils/sessionStorage.ts#L1408) |
-| hooks | [`src/utils/hooks/`](/src/utils/hooks/AsyncHookRegistry.ts) |
-| plugins | [`src/plugins/`](/src/plugins/builtinPlugins.ts)／[`src/services/plugins/`](/src/services/plugins/PluginInstallationManager.ts) |
-| skills | [`src/skills/`](/src/skills/bundledSkills.ts) |
-| MCP 客户端 | [`src/services/mcp/`](/src/services/mcp/InProcessTransport.ts) |
-| bridge | [`bridgeMain`](/src/bridge/bridgeMain.ts#L1980) — [`src/bridge/`](/src/bridge/bridgeApi.ts) |
-| REPL 壳 | [`src/screens/REPL.tsx`](/src/screens/REPL.tsx) |
-| 斜杠命令 | [`src/commands.ts`](/src/commands.ts)／[`src/commands/`](/src/commands/advisor.ts) |
+| CLI 分流 | [`src/entrypoints/cli.tsx`](../src/entrypoints/cli.tsx) |
+| main | [`main()`](../src/main.tsx#L585) — [`src/main.tsx`](../src/main.tsx) |
+| init | [`init`](../src/entrypoints/init.ts#L57) |
+| MCP server | [`startMCPServer`](../src/entrypoints/mcp.ts#L35) |
+| SDK | [`src/entrypoints/sdk/`](../src/entrypoints/sdk/controlSchemas.ts) |
+| QueryEngine | [`class`](../src/QueryEngine.ts#L184)／[`submitMessage`](../src/QueryEngine.ts#L209) |
+| query loop | [`query()`](../src/query.ts#L219)／[`while (true)`](../src/query.ts#L307) |
+| query 子目录 | [`src/query/`](../src/query/config.ts) |
+| 工具编排 | [`runTools`](../src/services/tools/toolOrchestration.ts#L19)／[`StreamingToolExecutor`](../src/services/tools/StreamingToolExecutor.ts#L40) |
+| Tool 契约 | [`buildTool`](../src/Tool.ts#L783) — [`src/Tool.ts`](../src/Tool.ts) |
+| 工具注册表 | [`getAllBaseTools`](../src/tools.ts#L193)／[`assembleToolPool`](../src/tools.ts#L345) — [`src/tools.ts`](../src/tools.ts) |
+| 工具实现 | [`src/tools/`](../src/tools/utils.ts) |
+| 权限门 | [`src/hooks/toolPermission/`](../src/hooks/toolPermission/PermissionContext.ts)／[`src/utils/permissions/`](../src/utils/permissions/PermissionMode.ts) |
+| Transcript | [`getTranscriptPath`](../src/utils/sessionStorage.ts#L202)／[`recordTranscript`](../src/utils/sessionStorage.ts#L1408) |
+| hooks | [`src/utils/hooks/`](../src/utils/hooks/AsyncHookRegistry.ts) |
+| plugins | [`src/plugins/`](../src/plugins/builtinPlugins.ts)／[`src/services/plugins/`](../src/services/plugins/PluginInstallationManager.ts) |
+| skills | [`src/skills/`](../src/skills/bundledSkills.ts) |
+| MCP 客户端 | [`src/services/mcp/`](../src/services/mcp/InProcessTransport.ts) |
+| bridge | [`bridgeMain`](../src/bridge/bridgeMain.ts#L1980) — [`src/bridge/`](../src/bridge/bridgeApi.ts) |
+| REPL 壳 | [`src/screens/REPL.tsx`](../src/screens/REPL.tsx) |
+| 斜杠命令 | [`src/commands.ts`](../src/commands.ts)／[`src/commands/`](../src/commands/advisor.ts) |
 
 ### 分层（源码，勿被 docs 行数误导）
 
 | 层 | 职责 | 锚点 |
 |---|---|---|
-| `QueryEngine` | 会话编排 + 持久化；调用 `query`、`recordTranscript` | [`QueryEngine.ts#L184`](/src/QueryEngine.ts#L184) 类；[`submitMessage`](/src/QueryEngine.ts#L209)；[`recordTranscript` 调用](/src/QueryEngine.ts#L451) |
-| `query` | 真正的 agent loop：`while (true)` → stream → tools → continue／terminal | [`query.ts#L219`](/src/query.ts#L219)；[`while`](/src/query.ts#L307) |
-| 文档管道图 | User Input → Query Engine → Tool Loop | [`docs/architecture.md`](/docs/architecture.md)（二手） |
+| `QueryEngine` | 会话编排 + 持久化；调用 `query`、`recordTranscript` | [`QueryEngine.ts#L184`](../src/QueryEngine.ts#L184) 类；[`submitMessage`](../src/QueryEngine.ts#L209)；[`recordTranscript` 调用](../src/QueryEngine.ts#L451) |
+| `query` | 真正的 agent loop：`while (true)` → stream → tools → continue／terminal | [`query.ts#L219`](../src/query.ts#L219)；[`while`](../src/query.ts#L307) |
+| 文档管道图 | User Input → Query Engine → Tool Loop | [`docs/architecture.md`](../docs/architecture.md)（二手） |
 
 提示词拼装见 [01-prompts.md](./01-prompts.md)。
 
@@ -95,14 +95,14 @@
 
 ## 建议阅读顺序
 
-1. **入口链**：[`cli.tsx`](/src/entrypoints/cli.tsx) → [`main.tsx`](/src/main.tsx#L585) 开头预取 + [`init.ts`](/src/entrypoints/init.ts#L57) → 何时进 REPL  
-2. **会话引擎**：[`QueryEngine.submitMessage`](/src/QueryEngine.ts#L209) — 拼 system／tools、调 `query`、调 [`recordTranscript`](/src/utils/sessionStorage.ts#L1408)  
-3. **Query 循环**：[`query.ts`](/src/query.ts#L307) 的 `while`：流式事件 → `tool_use` → tools → continue／terminal（优先深挖）  
-4. **工具契约**：[`buildTool`](/src/Tool.ts#L783) + [`assembleToolPool`](/src/tools.ts#L345)／[`getAllBaseTools`](/src/tools.ts#L193)  
-5. **权限＋沙箱**：[`hooks/toolPermission/`](/src/hooks/toolPermission/PermissionContext.ts) + [`utils/permissions/`](/src/utils/permissions/PermissionMode.ts)；Bash 侧 sandbox／adapter  
-6. **Transcript**：[`getTranscriptPath`](/src/utils/sessionStorage.ts#L202)／[`recordTranscript`](/src/utils/sessionStorage.ts#L1408)／resume（`conversationRecovery`）  
-7. **扩展面**：hooks 事件名 → plugins／skills 加载 → [`services/mcp/`](/src/services/mcp/InProcessTransport.ts) ↔ [`entrypoints/mcp.ts`](/src/entrypoints/mcp.ts#L35)  
-8. **IDE bridge**：[`bridgeMain`](/src/bridge/bridgeMain.ts#L1980) + permission 回调（`BRIDGE_MODE`）
+1. **入口链**：[`cli.tsx`](../src/entrypoints/cli.tsx) → [`main.tsx`](../src/main.tsx#L585) 开头预取 + [`init.ts`](../src/entrypoints/init.ts#L57) → 何时进 REPL  
+2. **会话引擎**：[`QueryEngine.submitMessage`](../src/QueryEngine.ts#L209) — 拼 system／tools、调 `query`、调 [`recordTranscript`](../src/utils/sessionStorage.ts#L1408)  
+3. **Query 循环**：[`query.ts`](../src/query.ts#L307) 的 `while`：流式事件 → `tool_use` → tools → continue／terminal（优先深挖）  
+4. **工具契约**：[`buildTool`](../src/Tool.ts#L783) + [`assembleToolPool`](../src/tools.ts#L345)／[`getAllBaseTools`](../src/tools.ts#L193)  
+5. **权限＋沙箱**：[`hooks/toolPermission/`](../src/hooks/toolPermission/PermissionContext.ts) + [`utils/permissions/`](../src/utils/permissions/PermissionMode.ts)；Bash 侧 sandbox／adapter  
+6. **Transcript**：[`getTranscriptPath`](../src/utils/sessionStorage.ts#L202)／[`recordTranscript`](../src/utils/sessionStorage.ts#L1408)／resume（`conversationRecovery`）  
+7. **扩展面**：hooks 事件名 → plugins／skills 加载 → [`services/mcp/`](../src/services/mcp/InProcessTransport.ts) ↔ [`entrypoints/mcp.ts`](../src/entrypoints/mcp.ts#L35)  
+8. **IDE bridge**：[`bridgeMain`](../src/bridge/bridgeMain.ts#L1980) + permission 回调（`BRIDGE_MODE`）
 
 ---
 
