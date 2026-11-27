@@ -8,7 +8,8 @@
 |---|---|---|
 | [AGENTS.md](./AGENTS.md) | 协作约定 | 中文、证据分级、自动 commit+push |
 | [00-mental-model.md](./00-mental-model.md) | 心智模型 | 入口→Query 循环→工具／权限／扩展地图 |
+| [01-prompts.md](./01-prompts.md) | 提示词体系 | 主 system／context／工具 description／旁路／用户可编辑 |
 
 > 本仓为 **leaked source**（见根 README）；笔记只谈机制，不作法律意见，不讨论翻版／规避授权。
 
-建议入口：[00-mental-model.md](./00-mental-model.md)。下一刀由 lux 指定（如 query 循环、BashTool）。
+建议入口：[00-mental-model.md](./00-mental-model.md)。下一刀由 lux 指定（如提示词静态段原文、query 循环、BashTool）。
